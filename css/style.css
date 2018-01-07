@@ -1,0 +1,25 @@
+a
+{
+	text-decoration: none;
+}
+.container
+{
+	float: left;
+}
+#branding
+{
+	font-size: 40px;
+}
+#background-image
+{
+	background-image: url(./img/img3.jpg);
+    
+}
+#image-1
+{
+	background-image: url(./img/img2.jpg);
+}
+#image-2
+{
+	background-image: url(./img/img1.jpg);
+}
