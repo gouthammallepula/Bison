@@ -18,11 +18,12 @@
 
 	
 <div class="w3-cell-row">
+	  <div class="w3-container w3-black w3-cell"></div>
   <div class="w3-container w3-black w3-cell">
-    <h1><a href="buysell.php">Bison</a></h1>
+    <h1><a href="buysell.php"><?php echo $_SESSION['login_user']; ?></a></h1>
   </div>
   <div class="w3-container w3-black w3-cell w3-cell-middle">
-        <a href="#" class="w3-bar-item w3-button">Home</a>
+        <a href="../home.php" class="w3-bar-item w3-button">Home</a>
   <a href="sell.php" class="w3-bar-item w3-button">Sell</a>
   <a href="buy.php" class="w3-bar-item w3-button">Buy</a>
   <a href="../logout.php" class="w3-bar-item w3-button">Logout</a>
@@ -59,14 +60,14 @@
 
 if (isset($_POST['submit'])) {
 
-
+    $db = mysqli_connect("Localhost","root","","BisonUsers");
   
-  	$pname = $_POST['pname'];
+  	$pname = mysqli_real_escape_string($db,$_POST['pname']);
   
-  	$info = $_POST['info'];
+  	$info = mysqli_real_escape_string($db,$_POST['info']);
   		//$username is included here
   	$user =  $_SESSION['login_user'];
-  	$db = mysqli_connect("Localhost","root","","BisonUsers");
+  	
   	$sql = "SELECT mobileno from busers where uname like '$user'";
   	$result = mysqli_query($db,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
