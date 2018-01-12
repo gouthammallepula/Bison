@@ -2,44 +2,78 @@
    include '../session.php';
 
 ?>
+
+
+
+<!-- starting here .......
+ ........................
+       ...............................
+.....................................
+	.........................................  -->
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Bison-Buy|Sell</title>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="https://www.w3schools.com/lib/w3.js"></script>
+  <head>
 
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	
-<div class="w3-cell-row">
-	  <div class="w3-container w3-black w3-cell"></div>
-  <div class="w3-container w3-black w3-cell">
-    <h1><a id="branding" href="buysell.php"><?php echo $_SESSION['login_user']; ?></a></h1>
-  </div>
-  <div class="w3-container w3-black w3-cell w3-cell-middle">
-        <a href="../home.php" class="w3-bar-item w3-button">Home</a>
-  <a href="sell.php" class="w3-bar-item w3-button">Sell</a>
-  <a href="buy.php" class="w3-bar-item w3-button">Buy</a>
-  <a href="../logout.php" class="w3-bar-item w3-button">Logout</a>
-  </div>
-</div>
+    <title>buy | Bison</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+   
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><?php echo $_SESSION['login_user'];   ?></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../home.php">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../ecom/sell.php">Sell</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../ecom/buy.php">Buy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../logout.php">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
 
+    <!-- Page Content -->
+    <div class="container">
 
+      <!-- Page Heading -->
+       <div style="height: 40px;"></div>
+        <h1 class="my-4">Available
+        <small>/ Sale</small>
+      </h1>
 
+ <?php         
 
-</body>
-</html>
-
-<?php
-  
-  //connecting to database
+          
+       //connecting to database
   $dbp = mysqli_connect("Localhost","root","","e_com");
 
   //selecting data from tables
@@ -49,54 +83,83 @@
 
   
      $count = mysqli_num_rows($resultinf);
-		
-    
-      if ($count > 0) {
+            
+             if ($count > 0) {
 
-      	echo '<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">';
+                      		  echo ' <div class="row">
+        ';
 
-   echo '<div class="w3-row-padding w3-padding-16 w3-center" id="food">';
-    
-      	while ($row = mysqli_fetch_array($resultinf)) {
-      	  
+          	while ($row = mysqli_fetch_array($resultinf)) {
+        
+          		// for image....
+              echo '
+                <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+                <a href="#"> <img src="data:image/jpeg/jpg/png;base64,'.base64_encode($row['image']).'"height="40%" width="100%" /></a>';
+            echo '
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">'.$row['pname'].' - '.$row['cost'].'</a>
+              </h4>
+         <a href="#">'.$row['username'].'</a><br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
 
+            
+             
       echo '
+              <p class="card-text">'.$row['info'].'</p>
 
+            </div>
+          </div>
+        </div>
+        ';
 
-<div class="w3-quarter">
-   <div class="w3-container-fluid w3-black">
+  }echo "</div>";
 
-       <img src="data:image/jpeg/jpg/png;base64,'.base64_encode($row['image']).'"height="200" width="200" />
+             }
+?>
+     
+      <!-- /.row -->
+<div style="height: 30px;"> </div>
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+
     </div>
-      <div class="w3-blue">';
+    <!-- /.container -->
 
-      echo '<h1>TITLE</h1>';
-echo '
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Bison 2018</p>
       </div>
-      <div class="w3-grey">
-          <p>description faehrfskjuh hfakjsehjkwfeah kjhwefkj hwekjrghkj hkjerw kjhgkjerhkjgbrbkehwhbkwebhjber</p>
-       </div>
-</div>
+      <!-- /.container -->
+    </footer>
 
- 
-     
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-      
+  </body>
 
-
-
-      ';
-     
-
-
-  //      echo '<img src="data:image/jpeg/jpg/png;base64,'.base64_encode($row['image']).'"height="200" width="200" />';
-   //   	  echo "<br>";
-
-      	  
-      	}
-      	 echo "</div></div>";
-      
-      }
-
-?>  
-
+</html>

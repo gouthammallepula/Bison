@@ -2,55 +2,117 @@
    include '../session.php';
  
 ?>
+
+<!-- khwhdkjhkjnhfkjnhkjwhfkhkjrhbfkbfmvjbhkb jk  -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Bison-Buy|Sell</title>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<title>Sell || Bison</title>
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="https://www.w3schools.com/lib/w3.js"></script>
-
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="../img/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/noui/nouislider.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../css/util1.css">
+	<link rel="stylesheet" type="text/css" href="../css/main1.css">
+<!--===============================================================================================-->
 </head>
 <body>
 
+
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form action="" method="post" class="contact100-form validate-form" enctype="multipart/form-data">
+				<span class="contact100-form-title">
+					Sell
+				</span>
+
+				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Name">
+					<span class="label-input100">Product name *</span>
+					<input class="input100" type="text" name="pname" placeholder="Enter Your product Name" required="required">
+				</div>
+
+				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Enter Your Email (e@a.x)">
+					<span class="label-input100">Cost *</span>
+					<input class="input100" type="text" name="cost" placeholder="Enter the cost " value="Free" required="required">
+				</div>
+
+				<div class="wrap-input100 bg1 rs1-wrap-input100">
+					<span class="label-input100">Image</span>
+					<input class="input100" type="file" name="image" required="required">
+				</div>
+
+				
+
+				<div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Please Type Your Message">
+					<span class="label-input100">Description</span>
+					<textarea class="input100" name="info" placeholder="Your description here..." required="required"></textarea>
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<button type="submit" name="submit" class="contact100-form-btn">
+						<span>
+							Submit
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+						</form>
+					
+				<div class="container-contact100-form-btn">
+					<button onclick="location.href='../home.php'" name="back"  class="contact100-form-btn">
+						<span>
+							Back
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
 	
-<div class="w3-cell-row">
-	  <div class="w3-container w3-black w3-cell"></div>
-  <div class="w3-container w3-black w3-cell">
-    <h1><a href="buysell.php"><?php echo $_SESSION['login_user']; ?></a></h1>
-  </div>
-  <div class="w3-container w3-black w3-cell w3-cell-middle">
-        <a href="../home.php" class="w3-bar-item w3-button">Home</a>
-  <a href="sell.php" class="w3-bar-item w3-button">Sell</a>
-  <a href="buy.php" class="w3-bar-item w3-button">Buy</a>
-  <a href="../logout.php" class="w3-bar-item w3-button">Logout</a>
-  </div>
-</div>
+			
+		</div>
+	</div>
 
-<form action="sell.php" method="post" enctype="multipart/form-data">
 
-<div class="w3-cell-row">
-	<div class="w3-container w3-cell" style="max-width: 500px;"> 
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!--  jkljcl;jlikloyhfukehgybyfkuyhgkujwghjkcmrgkgylukr  -->
+
+
+
+
 	
-	</div>
-	<div class="w3-container w3-cell">
-	    <input type="text" name="pname" required="required" ><br> 
-		<input type="file" name="image" value="upload" required="required" ><br>
-
- <textarea type="textarea" name="info" style="width: 500px; height: 100px;" placeholder="description" required="required" ></textarea><br>
- <button type="submit" name="submit" class="w3-btn w3-black" style="height: 100px; width: 500px;">Upload</button>
-
-	</div>
-	<div class="w3-container w3-cell"> 
-		
-	</div>
-</div>
 
 
-</form>
 
 
 <?php
@@ -60,11 +122,15 @@
 
 if (isset($_POST['submit'])) {
 
+//	ini_set('post_max_size','20M');
+
     $db = mysqli_connect("Localhost","root","","BisonUsers");
   
   	$pname = mysqli_real_escape_string($db,$_POST['pname']);
   
   	$info = mysqli_real_escape_string($db,$_POST['info']);
+
+  	$cost = mysqli_real_escape_string($db,$_POST['cost']);
   		//$username is included here
   	$user =  $_SESSION['login_user'];
   	
@@ -104,23 +170,22 @@ if (isset($_POST['submit'])) {
 
     if (in_array($fileActualExt, $allowed)) {
     	if ($fileError === 0) {
-    		if ($fileSize <= 20000000) {
+    		if ($fileSize <= 200000000) {
 
-               $img = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+             $img = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
 
      //now lets save these images into our project folders
 
     			$fileNameNew = uniqid('',true).".".$fileActualExt;
     			$fileDestination = '../img/'.$fileNameNew;
-    			echo $fileNameNew;
-    			move_uploaded_file($fileTmpName, $fileDestination);
+    			
                 
-
+                    $em = $_SESSION['email'];
 
     			// $file $pname $user  $mobno   $info
      // these are the files to be sent to database
-     $sq = "insert into sbusers(image,pname,username,mobno,info)values('$img','$pname','$user','$mobno','$info')";
+     $sq = "insert into sbusers(image,pname,username,mobno,info,cost,email)values('$img','$pname','$user','$mobno','$info','$cost','$em')";
      //connect to the database
      $dbe = mysqli_connect("Localhost","root","","e_com") or die(mysql_error());
      //submitted data is ...
@@ -132,7 +197,10 @@ if (isset($_POST['submit'])) {
      mysqli_query($dbe,$sq);
 
 
-    			echo "uploaded success";
+    			
+
+    			echo "upload success";
+
     		}
     		else
     		{
@@ -142,14 +210,15 @@ if (isset($_POST['submit'])) {
     	else
     	{
             echo "There was an error uploading your file";
-            if ($fileError===1) {
-            	echo "<h1>The file is too big to upload";
-            }
-            elseif ($fileError==2) {
+           
+            if ($fileError==2) {
             	echo "<h3> The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</h3>";
             }
             elseif ($fileError==3) {
             	echo "<h2> The uploaded file was only partially uploaded.</h2>";
+            }
+            elseif ($fileError==1) {
+            	echo "<h2>FUCKKKKK The uploaded file was only partially uploaded.</h2>";
             }
     	}
     }
