@@ -36,6 +36,7 @@
          header("location: home.php?success");
       }else {
          $error = "invalid login details...";
+         echo $error;
       }
    }
 ?>

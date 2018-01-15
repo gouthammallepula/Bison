@@ -7,19 +7,15 @@ body {
     padding-top: 56px;
   }
 }
-
-.portfolio-item {
+#marbot{
   margin-bottom: 30px;
 }
 
 .pagination {
   margin-bottom: 30px;
 }
-.container
-{
-	margin-top: 500px;
-}
-.my-4
-{
-	text-decoration: underline;
+
+
+.card {
+  height: 100%;
 }

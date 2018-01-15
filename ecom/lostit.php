@@ -1,15 +1,6 @@
 <?php
    include '../session.php';
-
 ?>
-
-
-
-<!-- starting here .......
- ........................
-       ...............................
-.....................................
-	.........................................  -->
 <!DOCTYPE html>
 <html>
 
@@ -52,14 +43,14 @@
               <a class="nav-link" href="sell.php">sell</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="buy.php">buy
-              <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="buy.php">buy</a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="found.php">found</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="lostit.php">lost</a>
+              <a class="nav-link" href="lostit.php">lost
+              <span class="sr-only">(current)</span></a>
             </li>
             
             <li class="nav-item">
@@ -76,18 +67,18 @@
 
       <!-- Page Heading -->
        <div style="height: 40px;"></div>
-        <h1 class="my-4">Available
-        <small>/ Sale</small>
+        <h1 class="my-4">found
+        <small>/ here</small>
       </h1>
 
  <?php         
 
           
        //connecting to database
-  $dbp = mysqli_connect("Localhost","root","","e_com");
+  $dbp = mysqli_connect("Localhost","root","","lost_found_data");
 
   //selecting data from tables
-  $data = "select *from sbusers;";
+  $data = "select *from lfdata;";
 
   $resultinf = mysqli_query($dbp,$data);
 
@@ -109,14 +100,14 @@
             echo '
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">'.$row['pname'].' - '.$row['cost'].'</a>
+                <a href="#">'.$row['fname'].'</a>
               </h4>
-         <a href="#">'.$row['username'].'</a><br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
+         <a href="#">'.$row['personname'].'</a><br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
 
             
              
       echo '
-              <p class="card-text">'.$row['info'].'</p>
+              <p class="card-text">'.$row['place'].'</p>
 
             </div>
           </div>

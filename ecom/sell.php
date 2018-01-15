@@ -35,8 +35,52 @@
 	<link rel="stylesheet" type="text/css" href="../css/util1.css">
 	<link rel="stylesheet" type="text/css" href="../css/main1.css">
 <!--===============================================================================================-->
+   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/shop-item.css" rel="stylesheet">
 </head>
 <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="../home.php"><?php  echo $_SESSION['login_user'];   ?></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../home.php">Home
+                s
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.php">sell
+              <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="buy.php">buy</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="found.php">found</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="lostit.php">lost</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="../logout.php">logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
 
 
 	<div class="container-contact100">
@@ -92,7 +136,8 @@
 	</div>
 
 
-
+<script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
