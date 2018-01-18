@@ -39,12 +39,12 @@
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/shop-item.css" rel="stylesheet">
+    <link href="../css/style1.css" rel="stylesheet">
 </head>
 <body>
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="../home.php"><?php  echo $_SESSION['login_user'];   ?></a>
+        <a class="navbar-brand" href="../home.php"><?php  echo $_SESSION['uname'];   ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -78,9 +78,102 @@
     </nav>
 
 
+<div style="height: 50px;">
+</div>
+
+<div>
+<?php
+// fname image info
+
+if (isset($_POST['submit'])) {
+    
+      $dbf = mysqli_connect("Localhost","root","","lost_found_data");
+      
+      $fname = mysqli_real_escape_string($dbf,$_POST['fname']);
+      $info = mysqli_real_escape_string($dbf,$_POST['info']);
+      $file = $_FILES['image'];
+    
+    $fileName = $file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+     $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+     $user =  $_SESSION['login_user'];
+      $em = $_SESSION['email'];
+
+      $fm = mysqli_connect("Localhost","root","","BisonUsers");
+      $fmq = "SELECT mobileno from busers where uname like '$user'";
+      $fmr = mysqli_query($fm,$fmq);
+      $fmi = mysqli_fetch_array($fmr,MYSQLI_ASSOC);
+      $fmc = mysqli_num_rows($fmr);
+
+      if($fmc == 1) {
+
+         $mobno = $fmi['mobileno'];
+        
+        
+      }else {
+        echo "U dont have a phone number in your profile";
+        header("Location : ../home.php");      }
+
+
+    $allowed = array('jpg','jpeg','png');
+
+    if (in_array($fileActualExt, $allowed)) {
+      if ($fileError === 0) {
+        if ($fileSize <= 200000000) {
+
+             $img = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+
+             $sqli = "insert into lfdata(fname,place,personname,mobno,image,email)values('$fname','$info','$user','$mobno','$img','$em');";
+             mysqli_query($dbf,$sqli);
+             echo "<div class='alert alert-success'>
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+  </div>";
+
+ 
+
+           }
+           else
+        {
+          echo "your file is too big!";
+        }
+     }
+     else
+      {
+            echo "There was an error uploading your file";
+           
+            if ($fileError==2) {
+              echo "<h3> The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</h3>";
+            }
+            elseif ($fileError==3) {
+              echo "<h2> The uploaded file was only partially uploaded.</h2>";
+            }
+            elseif ($fileError==1) {
+              echo "<h2>FUCKKKKK The uploaded file was only partially uploaded.</h2>";
+            }
+      }
+   }
+    else
+    {
+      echo "Cant upload a file of this type";
+    }
 
 
 
+
+ }    
+
+
+
+?>
+
+
+
+
+</div>
 
 
   <div class="container-contact100">
@@ -156,92 +249,5 @@
   
 
 
-
-
-<?php
-// fname image info
-
-if (isset($_POST['submit'])) {
-    
-      $dbf = mysqli_connect("Localhost","root","","lost_found_data");
-      
-      $fname = mysqli_real_escape_string($dbf,$_POST['fname']);
-      $info = mysqli_real_escape_string($dbf,$_POST['info']);
-      $file = $_FILES['image'];
-    
-    $fileName = $file['name'];
-    $fileTmpName = $file['tmp_name'];
-    $fileSize = $file['size'];
-    $fileError = $file['error'];
-     $fileExt = explode('.', $fileName);
-    $fileActualExt = strtolower(end($fileExt));
-
-     $user =  $_SESSION['login_user'];
-      $em = $_SESSION['email'];
-
-      $fm = mysqli_connect("Localhost","root","","BisonUsers");
-      $fmq = "SELECT mobileno from busers where uname like '$user'";
-      $fmr = mysqli_query($fm,$fmq);
-      $fmi = mysqli_fetch_array($fmr,MYSQLI_ASSOC);
-      $fmc = mysqli_num_rows($fmr);
-
-      if($fmc == 1) {
-
-         $mobno = $fmi['mobileno'];
-        
-        
-      }else {
-        echo "U dont have a phone number in your profile";
-        header("Location : ../home.php");      }
-
-
-    $allowed = array('jpg','jpeg','png');
-
-    if (in_array($fileActualExt, $allowed)) {
-      if ($fileError === 0) {
-        if ($fileSize <= 200000000) {
-
-             $img = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-
-             $sqli = "insert into lfdata(fname,place,personname,mobno,image,email)values('$fname','$info','$user','$mobno','$img','$em');";
-             mysqli_query($dbf,$sqli);
-             echo "upload success";
-
- 
-
-           }
-           else
-        {
-          echo "your file is too big!";
-        }
-     }
-     else
-      {
-            echo "There was an error uploading your file";
-           
-            if ($fileError==2) {
-              echo "<h3> The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</h3>";
-            }
-            elseif ($fileError==3) {
-              echo "<h2> The uploaded file was only partially uploaded.</h2>";
-            }
-            elseif ($fileError==1) {
-              echo "<h2>FUCKKKKK The uploaded file was only partially uploaded.</h2>";
-            }
-      }
-   }
-    else
-    {
-      echo "Cant upload a file of this type";
-    }
-
-
-
-
- }    
-
-
-
-?>
 
 

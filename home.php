@@ -16,32 +16,22 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/shop-item.css" rel="stylesheet">
+    <link href="css/style1.css" rel="stylesheet">
 
     <title>Home</title>
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
-    <script>
+    <style type="text/css">
+    	#bt
+    	{
+    		margin-top: 20px;
+    	}
 
-    	$(document).ready(function(){
-          
-  
-    		   // for profile
-              $("#btn").click(function()
-              	{
-           
-              		$("#change").load("profile.php");
-              	});
+    </style>
 
-                
-
-
-    	});
-      
-    	
-    </script>
-
+<!--    width:253px;
+  height:150px;           -->
   </head>
 
   <body>
@@ -49,7 +39,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="home.php"><?php  echo $_SESSION['login_user'];   ?></a>
+        <a class="navbar-brand" href="home.php"><?php  echo $_SESSION['uname'];   ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -85,43 +75,44 @@
 
 
       <header class="jumbotron my-4">
-        <h1 class="display-3">welcome <small><?php  echo $_SESSION['login_user'];   ?>!!</small></h1>
+        <h1 class="display-3">welcome <small><?php  echo $_SESSION['uname'];   ?>!!</small></h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-        <button id="btn" class="btn btn-primary btn-lg">Let's goto profile</button>
+        <button id="btn" class="btn btn-primary btn-lg" onclick="window.location = 'profile.php'">Let's goto profile</button><br>
+        <button id="bt" class="btn btn-primary btn-lg" onclick="window.location = 'ecom/cart.php'">OPEN CART</button>
       </header>
 
 
       <div class="row text-center">
 
         <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="img/img-01.png" alt="">
+          <div onclick="window.location='sy/previous.php'" class="card">
+            <img id="resize" class="card-img-top" src="img/previous.jpg" alt="">
             <div class="card-body">
               <h4 class="card-title">Previous papers</h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
+              <a href="sy/previous.php" class="btn btn-primary">Find Out More!</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+          <div onclick="window.location='sy/pdf.php'" class="card">
+            <img id="resize" class="card-img-top" src="img/pdf.jpg" alt="">
             <div class="card-body">
               <h4 class="card-title">Pdf's</h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
+              <a href="sy/pdf.php" class="btn btn-primary">Find Out More!</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <img id="resize" class="card-img-top" src="img/pro.png" alt="">
             <div class="card-body">
               <h4 class="card-title">Projects</h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
@@ -134,7 +125,7 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <img id="resize" class="card-img-top" src="img/qbli.png" alt="">
             <div class="card-body">
               <h4 class="card-title">question banks</h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
@@ -154,7 +145,7 @@
 
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
       </div>
 
     </footer>

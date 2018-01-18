@@ -38,13 +38,13 @@
    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/shop-item.css" rel="stylesheet">
+    <link href="../css/style1.css" rel="stylesheet">
 </head>
 <body>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="../home.php"><?php  echo $_SESSION['login_user'];   ?></a>
+        <a class="navbar-brand" href="../home.php"><?php  echo $_SESSION['uname'];   ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,7 +52,6 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <a class="nav-link" href="../home.php">Home
-                s
               </a>
             </li>
             <li class="nav-item">
@@ -77,10 +76,134 @@
       </div>
     </nav>
 
+<div style="height: 50px;">
+</div>
+
+
+<div id="here">
+
+<?php
+
+
+    
+
+if (isset($_POST['submit'])) {
+
+//  ini_set('post_max_size','20M');
+
+    $db = mysqli_connect("Localhost","root","","BisonUsers");
+  
+    $pname = mysqli_real_escape_string($db,$_POST['pname']);
+  
+    $info = mysqli_real_escape_string($db,$_POST['info']);
+
+    $cost = mysqli_real_escape_string($db,$_POST['cost']);
+      //$username is included here
+    $user =  $_SESSION['login_user'];
+    
+    $sql = "SELECT mobileno from busers where uname like '$user'";
+    $result = mysqli_query($db,$sql);
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+  
+     $count = mysqli_num_rows($result);
+    
+      if($count == 1) {
+
+         $mobno = $row['mobileno'];
+        
+        
+      }else {
+        echo "U dont have a phone number in your profile";      }
+
+      //image uploading process
+    $file = $_FILES['image'];
+    
+    $fileName = $file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+    
+
+  
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+  
+
+
+
+    $allowed = array('jpg','jpeg','png');
+
+    if (in_array($fileActualExt, $allowed)) {
+      if ($fileError === 0) {
+        if ($fileSize <= 200000000) {
+
+             $img = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+
+
+     //now lets save these images into our project folders
+
+          $fileNameNew = uniqid('',true).".".$fileActualExt;
+          $fileDestination = '../img/'.$fileNameNew;
+          
+                
+                    $em = $_SESSION['email'];
+
+          // $file $pname $user  $mobno   $info
+     // these are the files to be sent to database
+     $sq = "insert into sbusers(image,pname,username,mobno,info,cost,email)values('$img','$pname','$user','$mobno','$info','$cost','$em')";
+     //connect to the database
+     $dbe = mysqli_connect("Localhost","root","","e_com") or die(mysql_error());
+     //submitted data is ...
+     //$pname - product name   $file - image of product 
+     //$info - description of the product $user - name of the user
+     //$mobno - mobile number of the user
+
+     //below line will submit data into database....
+     mysqli_query($dbe,$sq);
+
+
+          echo ' <div class="alert alert-success">
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+  </div>';
+
+        }
+        else
+        {
+          echo "your file is too big!";
+        }
+      }
+      else
+      {
+            echo "There was an error uploading your file";
+           
+            if ($fileError==2) {
+              echo "<h3> The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</h3>";
+            }
+            elseif ($fileError==3) {
+              echo "<h2> The uploaded file was only partially uploaded.</h2>";
+            }
+            elseif ($fileError==1) {
+              echo "<h2>FUCKKKKK The uploaded file was only partially uploaded.</h2>";
+            }
+      }
+    }
+    else
+    {
+      echo "Cant upload a file of this type";
+    }
 
 
 
 
+}
+?>
+
+
+
+
+</div>
 
 
 	<div class="container-contact100">
@@ -113,7 +236,7 @@
 				</div>
 
 				<div class="container-contact100-form-btn">
-					<button type="submit" name="submit" class="contact100-form-btn">
+					<button data-toggle="modal" data-target="#myModal" type="submit" name="submit" class="contact100-form-btn">
 						<span>
 							Submit
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
@@ -134,8 +257,23 @@
 			
 		</div>
 	</div>
-
-
+<!--<div class="modal fade" id="myModal" role="dialog">
+             <div class="modal-dialog">
+             <div class="modal-content">
+             <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+             <h4 class="modal-title">modal header</h4>
+             </div>
+             <div class="modal-body">
+             <p>Some text in the modal</p>
+             </div>
+             <div class ="modal-footer">
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+             </div>
+             </div>
+             </div>
+-->
 <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -160,124 +298,3 @@
 
 
 
-<?php
-
-
-    
-
-if (isset($_POST['submit'])) {
-
-//	ini_set('post_max_size','20M');
-
-    $db = mysqli_connect("Localhost","root","","BisonUsers");
-  
-  	$pname = mysqli_real_escape_string($db,$_POST['pname']);
-  
-  	$info = mysqli_real_escape_string($db,$_POST['info']);
-
-  	$cost = mysqli_real_escape_string($db,$_POST['cost']);
-  		//$username is included here
-  	$user =  $_SESSION['login_user'];
-  	
-  	$sql = "SELECT mobileno from busers where uname like '$user'";
-  	$result = mysqli_query($db,$sql);
-    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-  
-     $count = mysqli_num_rows($result);
-		
-      if($count == 1) {
-
-      	 $mobno = $row['mobileno'];
-      	
-        
-      }else {
-        echo "U dont have a phone number in your profile";      }
-
-      //image uploading process
-    $file = $_FILES['image'];
-    
-    $fileName = $file['name'];
-    $fileTmpName = $file['tmp_name'];
-    $fileSize = $file['size'];
-    $fileError = $file['error'];
-    
-
-  
-
-    $fileExt = explode('.', $fileName);
-    $fileActualExt = strtolower(end($fileExt));
-
-  
-
-
-
-    $allowed = array('jpg','jpeg','png');
-
-    if (in_array($fileActualExt, $allowed)) {
-    	if ($fileError === 0) {
-    		if ($fileSize <= 200000000) {
-
-             $img = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-
-
-     //now lets save these images into our project folders
-
-    			$fileNameNew = uniqid('',true).".".$fileActualExt;
-    			$fileDestination = '../img/'.$fileNameNew;
-    			
-                
-                    $em = $_SESSION['email'];
-
-    			// $file $pname $user  $mobno   $info
-     // these are the files to be sent to database
-     $sq = "insert into sbusers(image,pname,username,mobno,info,cost,email)values('$img','$pname','$user','$mobno','$info','$cost','$em')";
-     //connect to the database
-     $dbe = mysqli_connect("Localhost","root","","e_com") or die(mysql_error());
-     //submitted data is ...
-     //$pname - product name   $file - image of product 
-     //$info - description of the product $user - name of the user
-     //$mobno - mobile number of the user
-
-     //below line will submit data into database....
-     mysqli_query($dbe,$sq);
-
-
-    			
-
-    			echo "upload success";
-
-    		}
-    		else
-    		{
-    			echo "your file is too big!";
-    		}
-    	}
-    	else
-    	{
-            echo "There was an error uploading your file";
-           
-            if ($fileError==2) {
-            	echo "<h3> The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</h3>";
-            }
-            elseif ($fileError==3) {
-            	echo "<h2> The uploaded file was only partially uploaded.</h2>";
-            }
-            elseif ($fileError==1) {
-            	echo "<h2>FUCKKKKK The uploaded file was only partially uploaded.</h2>";
-            }
-    	}
-    }
-    else
-    {
-    	echo "Cant upload a file of this type";
-    }
-
-
-
-
-}
-?>
-
-
-</body>
-</html>

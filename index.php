@@ -4,11 +4,11 @@
   if (isset($_POST['submit'])) {
   	$username = mysqli_real_escape_string($conn,$_POST['username']);
   	$password = mysqli_real_escape_string($conn,$_POST['password']);
-  	$sql = "SELECT uid FROM busers where uname = '$username' and pass = '$password'";
+  	$sql = "SELECT uid FROM busers where htno = '$username' or uname = '$username' and pass = '$password'";
   	$result = mysqli_query($conn,$sql);
   	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
   	$active = $row['active'];
-    $sq = "SELECT email FROM busers where uname = '$username' and pass = '$password'";
+    $sq = "SELECT * FROM busers where htno = '$username' or uname = '$username' and pass = '$password'";
     $res = mysqli_query($conn,$sq);
     $rowres = mysqli_fetch_array($res,MYSQLI_ASSOC);
     $active = $rowres['active'];
@@ -21,10 +21,9 @@
        if($count1 == 1) {
          
          $_SESSION['email'] = $rowres['email'];
+         $_SESSION['lname'] = $rowres['lname'];
+         $_SESSION['uname'] = $rowres['uname'];
     
-
-         
-        
       }
 		
       if($count == 1) {

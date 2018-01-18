@@ -20,7 +20,7 @@
      <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/shop-item.css" rel="stylesheet">
+    <link href="../css/style1.css" rel="stylesheet">
 
   </head>
 
@@ -28,7 +28,7 @@
 
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="../home.php"><?php  echo $_SESSION['login_user'];   ?></a>
+        <a class="navbar-brand" href="../home.php"><?php  echo $_SESSION['uname'];   ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -78,7 +78,7 @@
   $dbp = mysqli_connect("Localhost","root","","lost_found_data");
 
   //selecting data from tables
-  $data = "select *from lfdata;";
+  $data = "select *from lfdata ORDER BY sno DESC;";
 
   $resultinf = mysqli_query($dbp,$data);
 
@@ -96,7 +96,7 @@
               echo '
                 <div id="marbot" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-                <a href="#"> <img src="data:image/jpeg/jpg/png;base64,'.base64_encode($row['image']).'"height="40%" width="100%" /></a>';
+                <a href="#"> <img src="data:image/jpeg/jpg/png;base64,'.base64_encode($row['image']).'"height="100%" width="100%" /></a>';
             echo '
             <div class="card-body">
               <h4 class="card-title">
