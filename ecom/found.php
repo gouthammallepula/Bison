@@ -59,14 +59,14 @@
               <a class="nav-link" href="sell.php">sell</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="buy.php">buy</a>
+              <a class="nav-link" href="buy.php?page=1">buy</a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="found.php">found
               <span class="sr-only">(current)</span></a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="lostit.php">lost</a>
+              <a class="nav-link" href="lostit.php?page=1">lost</a>
             </li>
             
             <li class="nav-item">

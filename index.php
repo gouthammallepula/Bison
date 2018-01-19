@@ -23,6 +23,8 @@
          $_SESSION['email'] = $rowres['email'];
          $_SESSION['lname'] = $rowres['lname'];
          $_SESSION['uname'] = $rowres['uname'];
+         $_SESSION['htno'] = $rowres['htno'];
+         $_SESSION['sec'] = $rowres['sec'];
     
       }
 		

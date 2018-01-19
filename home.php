@@ -54,13 +54,13 @@
               <a class="nav-link" href="ecom/sell.php">sell</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ecom/buy.php">buy</a>
+              <a class="nav-link" href="ecom/buy.php?page=1">buy</a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="ecom/found.php">found</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="ecom/lostit.php">lost</a>
+              <a class="nav-link" href="ecom/lostit.php?page=1">lost</a>
             </li>
             
             <li class="nav-item">
@@ -125,20 +125,57 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img id="resize" class="card-img-top" src="img/qbli.png" alt="">
-            <div class="card-body">
-              <h4 class="card-title">question banks</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
+                 <img id="resize" class="card-img-top" src="img/qbli.png" alt="">
+               <div class="card-body">
+                   <h4 class="card-title">question banks</h4>
+                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
+               </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary">Find Out More!</a>
+                </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div onclick="window.location='sy/timetable.php'" class="card">
+                 <img id="resize" style="height: 170px;" class="card-img-top" src="img/managei.jpg" alt="">
+               <div class="card-body">
+                   <h4 class="card-title">Time-table</h4>
+                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
+               </div>
+                <div class="card-footer">
+                    <a href="sy/timetable.php" class="btn btn-primary">Find Out More!</a>
+                </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+                 <img id="resize" class="card-img-top" src="img/lecic.jpg" style="height: 250px;" alt="">
+               <div class="card-body">
+                   <h4 class="card-title">lecturer details</h4>
+                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
+               </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary">Find Out More!</a>
+                </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+                 <img style="height: 170px;" id="resize" class="card-img-top" src="img/sylic.jpg" alt="">
+               <div class="card-body">
+                   <h4 class="card-title">syllabus</h4>
+                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
+               </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary">Find Out More!</a>
+                </div>
           </div>
         </div>
 
       </div>
-
-
     </div>
 
 

@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Small Business - Start Bootstrap Template</title>
+    <title>Cart || Bison</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,6 +27,7 @@
         margin-left: 10px;
       }
     </style>
+    
 
     
   </head>
@@ -50,14 +51,14 @@
               <a class="nav-link" href="sell.php">sell</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="buy.php">buy
+              <a class="nav-link" href="buy.php?page=1">buy
               <span class="sr-only">(current)</span></a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="found.php">found</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="lostit.php">lost</a>
+              <a class="nav-link" href="lostit.php?page=1">lost</a>
             </li>
             
             <li class="nav-item">
@@ -80,7 +81,7 @@
         <!-- /.col-lg-8 -->
         <div class="col-lg-4">
           <h1>A CART FULL OF HAPPINESS!!</h1>
-          <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
           <a class="btn btn-primary btn-lg" href="sell.php">Start Selling!</a>
           <a id="top" class="btn btn-primary btn-lg" href="buy.php">Start Buying!</a>
         </div>
@@ -140,7 +141,7 @@ if (isset($_POST['subm'])) {
               <h4 class="card-title">
                 <a href="#">'.$row['pname'].' - '.$row['cost'].'/₹</a>
               </h4>
-         <a href="#">'.$row['username'].'</a><br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
+         <a href="#">'.$row['username'].'</a><br>'.$_SESSION['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
 
             
              
@@ -168,7 +169,8 @@ if (isset($_POST['subm'])) {
 </div>
       <div class="card text-white bg-secondary my-4 text-center">
         <div class="card-body">
-          <p class="text-white m-0">your content for Lost Things</p>
+          <p id="ht" class="text-white m-0">your content for Lost Things</p>
+
         </div>
       </div>
   
@@ -222,7 +224,7 @@ if (isset($_POST['sub'])) {
               <h4 class="card-title">
                 <a href="#">'.$row['fname'].'</a>
               </h4>
-         <a href="#">'.$row['personname'].'</a><br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
+         <a href="#">'.$row['personname'].'</a><br>'.$_SESSION['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
 
             
              
@@ -257,7 +259,7 @@ if (isset($_POST['sub'])) {
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
       </div>
       <!-- /.container -->
     </footer>

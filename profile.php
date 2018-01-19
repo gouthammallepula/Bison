@@ -37,6 +37,24 @@
 
     <!-- Custom styles for this template -->
     <link href="css/resume.min.css" rel="stylesheet">
+    <style type="text/css">
+      @media (max-width: 978px) {
+    #nam {
+      padding:0;
+      margin:0;
+    }
+
+    body {
+      padding:0;
+    }
+
+    .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom:0;
+    }
+}
+    </style>
 
 
     <!--         for image modal            -->
@@ -104,7 +122,7 @@
       </div>
     </nav>
 
-    <div class="container-fluid p-0">
+    <div id="nam" class="container-fluid p-0">
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
@@ -117,7 +135,9 @@
           <p class="mb-5"><?php echo $row['about']  ?></p>
           <ul class="list-inline list-social-icons mb-0">
             <li class="list-inline-item">
-              <a href="<?php $row['fb']  ?>">
+              <?php 
+                echo '<a href="'.$row['fb'].'">';
+              ?>
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -125,7 +145,9 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="#">
+              <?php 
+                echo '<a href="'.$row['twi'].'">';
+              ?>
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -133,7 +155,9 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="#">
+              <?php 
+                echo '<a href="'.$row['lin'].'">';
+              ?>
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -141,7 +165,9 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="#">
+              <?php 
+                echo '<a href="'.$row['git'].'">';
+              ?>
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-github fa-stack-1x fa-inverse"></i>

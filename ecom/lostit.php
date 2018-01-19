@@ -1,5 +1,6 @@
 <?php
    include '../session.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,37 @@
 
     <!-- Custom styles for this template -->
     <link href="../css/style1.css" rel="stylesheet">
+    <style type="text/css">
+    #pg
+      {
+        position: absolute;
+        right: 0;
+        bottom: 100px;
+        left: 0;
 
+      }
+      footer
+      {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+      }
+      body
+      {
+          position: relative;
+          padding-bottom: 6rem;
+          min-height: 100%;
+          margin: 0;
+      }
+      html
+      {
+        height: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+    
   </head>
 
   <body>
@@ -43,13 +74,13 @@
               <a class="nav-link" href="sell.php">sell</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="buy.php">buy</a>
+              <a class="nav-link" href="buy.php?page=1">buy</a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="found.php">found</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="lostit.php">lost
+              <a class="nav-link" href="lostit.php?page=1">lost
               <span class="sr-only">(current)</span></a>
             </li>
             
@@ -67,8 +98,8 @@
 
       <!-- Page Heading -->
        <div style="height: 40px;"></div>
-        <h1 class="my-4">found
-        <small>/ here</small>
+        <h1 class="my-4">Found
+        <small>/ Here</small>
       </h1>
 
  <?php         
@@ -77,8 +108,23 @@
        //connecting to database
   $dbp = mysqli_connect("Localhost","root","","lost_found_data");
 
+  //pagination algorithm
+  
+
+  $pagei = $_GET['page'];
+
+
+  if ($pagei == "" || $pagei == "1") {
+    $page1 = 0;
+  }
+  else
+  {
+    $page1 = ($_GET['page']*8)-8;
+  }
+
+
   //selecting data from tables
-  $data = "select *from lfdata ORDER BY sno DESC;";
+  $data = "select *from lfdata ORDER BY sno DESC limit $page1,8;";
 
   $resultinf = mysqli_query($dbp,$data);
 
@@ -102,7 +148,7 @@
               <h4 class="card-title">
                 <a href="#">'.$row['fname'].'</a>
               </h4>
-         <a href="#">'.$row['personname'].'</a><br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
+         <a href="#">'.$row['personname'].'</a><br>'.$_SESSION['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
 
             
              
@@ -120,37 +166,61 @@
 ?>
      
       <!-- /.row -->
-<div style="height: 30px;"> </div>
-      <!-- Pagination -->
-      <ul class="pagination justify-content-center">
+
+     
+
+    </div>
+    <!-- /.container -->
+    <div style="height: 70px;"></div>
+
+    <?php 
+  
+    $dat = "select *from lfdata ORDER BY sno DESC;";
+    $res = mysqli_query($dbp,$dat);
+    $c = mysqli_num_rows($res);
+    $a = $c / 8;
+    $a = ceil($a);
+
+   echo '
+           <ul id="pg" class="pagination justify-content-center">
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
+          <a class="page-link" href="lostit.php?page=1" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">Previous</span>
           </a>
         </li>
-        <li class="page-item">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
+   ';
+  
+    for ($b = 1; $b <= $a ; $b++) { 
+
+
+        ?> 
+
+         <li class="page-item">
+          <a class="page-link" href="lostit.php?page=<?php echo $b; ?>"><?php  echo $b; ?></a>
+         </li>
+
+        
+
+        <?php
+    }
+
+   ?>
+<li class="page-item">
+          <a class="page-link" href="lostit.php?page=<?php echo $a; ?>" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
           </a>
         </li>
-      </ul>
+
+   </ul>
 
     </div>
-    <!-- /.container -->
+
+
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer id="ft" class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Bison 2018</p>
       </div>
