@@ -83,11 +83,157 @@
           <h1>A CART FULL OF HAPPINESS!!</h1>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
           <a class="btn btn-primary btn-lg" href="sell.php">Start Selling!</a>
-          <a id="top" class="btn btn-primary btn-lg" href="buy.php">Start Buying!</a>
+          <a id="top" class="btn btn-primary btn-lg" href="buy.php?page=1">Start Buying!</a>
         </div>
         <!-- /.col-md-4 -->
       </div>
       <!-- /.row -->
+      <!-- cart items -->
+     <div class="card text-white bg-secondary my-4 text-center">
+        <div class="card-body">
+          <p class="text-white m-0">your ADD TO CART content</p>
+        </div>
+      </div>
+      <div id="cartcontent">
+        <?php
+
+          $uy = $_SESSION['htno'];
+         
+          $con = mysqli_connect("Localhost","root","","cart");
+
+          //pagination algorithm
+
+
+  $pagem = $_GET['pagek'];
+
+
+  if ($pagem == "" || $pagem == "1") {
+    $page3 = 0;
+  }
+  else
+  {
+    $page3 = ($_GET['pagek']*4)-4;
+  }
+
+          $qu = "select * from cart where bname LIKE '$uy' ORDER BY sno DESC limit $page3,4;";
+
+          $rem = mysqli_query($con,$qu);
+
+          if (isset($_POST['su'])) {
+      $numt = $_POST['iuy'];
+
+      $q = "DELETE FROM cart WHERE sno = '$numt'";
+
+      $ch = mysqli_query($con,$q);
+
+      if ($ch==1) {
+           include '../ope/delbuy.php';
+      }
+
+}
+
+          $cm = mysqli_num_rows($rem);
+
+          if($cm > 0)
+          {
+             echo ' <div class="row">';
+              while ($roast = mysqli_fetch_array($rem))
+               {
+                $unit = $roast['sno'];
+                    echo '
+                <div id="marbot" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+                <a href="#"> <img src="data:image/jpeg/jpg/png;base64,'.base64_encode($roast['image']).'"height="40%" width="100%" /></a>';
+            echo '
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">'.$roast['pname'].' - '.$roast['cost'].'/₹</a>
+              </h4>
+         <a href="#">'.$roast['username'].'</a><br>'.$roast['htno'].'<br>+91'.$roast['mobno'].'<br><small>'.$roast['email'].'</small>';
+
+            
+             
+      echo '
+              <p class="card-text">'.$roast['des'].'</p>
+              <center>
+              <form method="post" action="">
+              <input name="iuy" type="hidden" value="'.$unit.'">
+                <button type="submit" name="su" class="btn btn-primary">Delete</button>
+                </form>
+              </center>
+            </div>
+          </div>
+        </div>
+        ';
+
+
+              }echo "</div>";
+
+
+          }
+          else
+          {
+            echo "<h5>You didn't added anything...</h5>";
+          }
+
+
+
+
+
+        ?>
+
+        </div>
+
+        <!--      pagination for cart things          -->
+<?php 
+  
+    $datm = "select * from cart where bname LIKE '$uy' ORDER BY sno DESC;";
+    $resk = mysqli_query($con,$datm);
+    $cp = mysqli_num_rows($resk);
+    $ap = $cp / 4;
+    $ap = ceil($ap);
+
+   echo '
+           <ul id="pg" class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="cart.php?pagec=1&page=1&pagek=1" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+   ';
+  
+    for ($bp = 1; $bp <= $ap ; $bp++) { 
+
+
+        ?> 
+
+         <li class="page-item">
+          <a class="page-link" href="cart.php?page=1&pagec=1&pagek=<?php echo $bp; ?>"><?php  echo $bp; ?></a>
+         </li>
+
+        
+
+        <?php
+    }    
+
+   ?>
+<li class="page-item">
+          <a class="page-link" href="cart.php?page=1&pagec=1&pagek=<?php if($ap==0){echo $ap+1;}else{ echo $ap;} ?>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+
+   </ul>
+
+
+
+<!--               end of pagination                     -->
+
+
+
+      
 
       <!-- Call to Action Well -->
       <div class="card text-white bg-secondary my-4 text-center">
@@ -102,8 +248,22 @@
        //connecting to database
   $dbp = mysqli_connect("Localhost","root","","e_com");
 
+  //pagination algorithm
+
+
+  $pagei = $_GET['page'];
+
+
+  if ($pagei == "" || $pagei == "1") {
+    $page1 = 0;
+  }
+  else
+  {
+    $page1 = ($_GET['page']*4)-4;
+  }
+
   //selecting data from tables
-  $data = "select *from sbusers where username LIKE '$us' ORDER BY pid DESC;";
+  $data = "select *from sbusers where username LIKE '$us' ORDER BY pid DESC limit $page1,4;";
 
   $resultinf = mysqli_query($dbp,$data);
   
@@ -121,6 +281,7 @@ if (isset($_POST['subm'])) {
 }
   
      $count = mysqli_num_rows($resultinf);
+     
             
              if ($count > 0) {
 
@@ -141,7 +302,7 @@ if (isset($_POST['subm'])) {
               <h4 class="card-title">
                 <a href="#">'.$row['pname'].' - '.$row['cost'].'/₹</a>
               </h4>
-         <a href="#">'.$row['username'].'</a><br>'.$_SESSION['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
+         <a href="#">'.$row['username'].'</a><br>'.$row['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$row['email'].'</small>';
 
             
              
@@ -166,6 +327,52 @@ if (isset($_POST['subm'])) {
              }
 ?>
 
+<!--      pagination for sell things          -->
+<?php 
+  
+    $dat = "select *from sbusers where username LIKE '$us' ORDER BY pid DESC;";
+    $res = mysqli_query($dbp,$dat);
+    $c = mysqli_num_rows($res);
+    $a = $c / 4;
+    $a = ceil($a);
+
+   echo '
+           <ul id="pg" class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="cart.php?pagec=1&page=1" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+   ';
+  
+    for ($b = 1; $b <= $a ; $b++) { 
+
+
+        ?> 
+
+         <li class="page-item">
+          <a class="page-link" href="cart.php?pagec=1&page=<?php echo $b; ?>"><?php  echo $b; ?></a>
+         </li>
+
+        
+
+        <?php
+    }    
+
+   ?>
+<li class="page-item">
+          <a class="page-link" href="cart.php?pagec=1&page=<?php if($a==0){echo $a+1;}else{ echo $a;} ?>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+
+   </ul>
+
+
+
+<!--               end of pagination                     -->
 </div>
       <div class="card text-white bg-secondary my-4 text-center">
         <div class="card-body">
@@ -181,8 +388,22 @@ if (isset($_POST['subm'])) {
        //connecting to database
   $dbp = mysqli_connect("Localhost","root","","lost_found_data");
 
+  //pagination algorithm
+  
+
+  $pagein = $_GET['pagec'];
+
+
+  if ($pagein == "" || $pagein == "1") {
+    $page2 = 0;
+  }
+  else
+  {
+    $page2 = ($_GET['pagec']*4)-4;
+  }
+
   //selecting data from tables
-  $data = "select *from lfdata where personname LIKE '$us' ORDER BY sno DESC;";
+  $data = "select *from lfdata where personname LIKE '$us' ORDER BY sno DESC limit $page2,4;";
 
   $resultinf = mysqli_query($dbp,$data);
 
@@ -224,7 +445,7 @@ if (isset($_POST['sub'])) {
               <h4 class="card-title">
                 <a href="#">'.$row['fname'].'</a>
               </h4>
-         <a href="#">'.$row['personname'].'</a><br>'.$_SESSION['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
+         <a href="#">'.$row['personname'].'</a><br>'.$row['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$row['email'].'</small>';
 
             
              
@@ -255,6 +476,49 @@ if (isset($_POST['sub'])) {
 
     </div>
     <!-- /.container -->
+
+<?php 
+    $db = mysqli_connect("Localhost","root","","lost_found_data");
+    $dati = "select *from lfdata where personname LIKE '$us' ORDER BY sno DESC;";
+    $rest = mysqli_query($db,$dati);
+    $k = mysqli_num_rows($rest);             //c=k , a=y b=n
+    $y = $k / 4;
+    $y = ceil($y);
+
+   echo '
+           <ul id="pg" class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="cart.php?pagec=1&page=1" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+   ';
+  
+    for ($n = 1; $n <= $y ; $n++) { 
+
+
+        ?> 
+
+         <li class="page-item">
+          <a class="page-link" href="cart.php?page=1&pagec=<?php echo $n; ?>"><?php  echo $n; ?></a>
+         </li>
+
+        
+
+        <?php
+    }    
+
+   ?>
+<li class="page-item">                                        
+          <a class="page-link" href="cart.php?page=1&pagec=<?php if($y==0){echo $y+1;}else{ echo $y;} ?>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+
+   </ul>
+
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">

@@ -54,6 +54,7 @@
       margin-bottom:0;
     }
 }
+   
     </style>
 
 
@@ -66,7 +67,7 @@
   <body id="page-top">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <a class="navbar-brand js-scroll-trigger" href="home.php">
         <span class="d-block d-lg-none"><?php echo $_SESSION['uname'];   ?></span>
         <span class="d-none d-lg-block">
           <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="profile.jpg" alt="">
@@ -121,7 +122,7 @@
         </ul>
       </div>
     </nav>
-
+ <div style="height: 30px;"></div>
     <div id="nam" class="container-fluid p-0">
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">

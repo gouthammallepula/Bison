@@ -27,6 +27,24 @@
     	{
     		margin-top: 20px;
     	}
+      #bran
+           {
+
+           }
+      @media (max-height: 30px) {
+           #topspace
+           {
+            padding:0;
+            margin:0;
+           }
+         }
+         @media (max-width: 978px) {
+           #bran
+           {
+              
+           }
+       }
+
 
     </style>
 
@@ -70,15 +88,18 @@
         </div>
       </div>
     </nav>
+    <div id="topspace"></div>
 <div id="change">
      <div class="container">
 
 
-      <header class="jumbotron my-4">
+      <header id="bran" class="jumbotron my-4">
+
         <h1 class="display-3">welcome <small><?php  echo $_SESSION['uname'];   ?>!!</small></h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
         <button id="btn" class="btn btn-primary btn-lg" onclick="window.location = 'profile.php'">Let's goto profile</button><br>
-        <button id="bt" class="btn btn-primary btn-lg" onclick="window.location = 'ecom/cart.php'">OPEN CART</button>
+        <button id="bt" class="btn btn-primary btn-lg" onclick="window.location = 'ecom/cart.php?page=1&pagec=1&pagek=1'">OPEN CART</button>
+
       </header>
 
 
@@ -86,7 +107,7 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div onclick="window.location='sy/previous.php'" class="card">
-            <img id="resize" class="card-img-top" src="img/previous.jpg" alt="">
+            <img id="resize" style="height: 150px;" class="card-img-top" src="img/previous.jpg" alt="">
             <div class="card-body">
               <h4 class="card-title">Previous papers</h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
@@ -99,7 +120,7 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div onclick="window.location='sy/pdf.php'" class="card">
-            <img id="resize" class="card-img-top" src="img/pdf.jpg" alt="">
+            <img id="resize" style="height: 150px;" class="card-img-top" src="img/pdf.jpg" alt="">
             <div class="card-body">
               <h4 class="card-title">Pdf's</h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
@@ -112,7 +133,7 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img id="resize" class="card-img-top" src="img/pro.png" alt="">
+            <img id="resize" style="height: 150px;" class="card-img-top" src="img/pro.png" alt="">
             <div class="card-body">
               <h4 class="card-title">Projects</h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
@@ -125,7 +146,7 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-                 <img id="resize" class="card-img-top" src="img/qbli.png" alt="">
+                 <img id="resize" style="height: 150px;" class="card-img-top" src="img/qb.jpg" alt="">
                <div class="card-body">
                    <h4 class="card-title">question banks</h4>
                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>

@@ -40,6 +40,15 @@
 
     <!-- Custom styles for this template -->
     <link href="../css/style1.css" rel="stylesheet">
+    <style type="text/css">
+       @media (max-height: 30px) {
+           #topspace
+           {
+            padding:0;
+            margin:0;
+           }
+       }
+    </style>
 </head>
 <body>
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -78,7 +87,7 @@
     </nav>
 
 
-<div style="height: 50px;">
+<div id="topspace">
 </div>
 
 <div>
@@ -102,6 +111,7 @@ if (isset($_POST['submit'])) {
 
      $user =  $_SESSION['login_user'];
       $em = $_SESSION['email'];
+      $hno = $_SESSION['htno'];
 
       $fm = mysqli_connect("Localhost","root","","BisonUsers");
       $fmq = "SELECT mobileno from busers where uname like '$user'";
@@ -127,7 +137,7 @@ if (isset($_POST['submit'])) {
 
              $img = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
-             $sqli = "insert into lfdata(fname,place,personname,mobno,image,email)values('$fname','$info','$user','$mobno','$img','$em');";
+             $sqli = "insert into lfdata(fname,place,personname,mobno,image,email,htno)values('$fname','$info','$user','$mobno','$img','$em','$hno');";
              mysqli_query($dbf,$sqli);
              echo "<div class='alert alert-success'>
     <strong>Success!</strong> This alert box could indicate a successful or positive action.

@@ -148,12 +148,13 @@
               <h4 class="card-title">
                 <a href="#">'.$row['fname'].'</a>
               </h4>
-         <a href="#">'.$row['personname'].'</a><br>'.$_SESSION['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
+         <a href="#">'.$row['personname'].'</a><br>'.$row['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
 
             
              
       echo '
               <p class="card-text">'.$row['place'].'</p>
+              
 
             </div>
           </div>
@@ -207,7 +208,7 @@
 
    ?>
 <li class="page-item">
-          <a class="page-link" href="lostit.php?page=<?php echo $a; ?>" aria-label="Next">
+          <a class="page-link" href="lostit.php?page=<?php if($a==1){ echo $a;}else{$a=1;echo $a;} ?>" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
           </a>

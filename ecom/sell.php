@@ -39,6 +39,16 @@
 
     <!-- Custom styles for this template -->
     <link href="../css/style1.css" rel="stylesheet">
+
+    <style type="text/css">
+       @media (max-height: 30px) {
+           #topspace
+           {
+            padding:0;
+            margin:0;
+           }
+       }
+    </style>
 </head>
 <body>
 
@@ -76,7 +86,7 @@
       </div>
     </nav>
 
-<div style="height: 50px;">
+<div id="topspace">
 </div>
 
 
@@ -122,6 +132,7 @@ if (isset($_POST['submit'])) {
     $fileTmpName = $file['tmp_name'];
     $fileSize = $file['size'];
     $fileError = $file['error'];
+    $hno = $_SESSION['htno'];
     
 
   
@@ -152,7 +163,7 @@ if (isset($_POST['submit'])) {
 
           // $file $pname $user  $mobno   $info
      // these are the files to be sent to database
-     $sq = "insert into sbusers(image,pname,username,mobno,info,cost,email)values('$img','$pname','$user','$mobno','$info','$cost','$em')";
+     $sq = "insert into sbusers(image,pname,username,mobno,info,cost,email,htno)values('$img','$pname','$user','$mobno','$info','$cost','$em','$hno')";
      //connect to the database
      $dbe = mysqli_connect("Localhost","root","","e_com") or die(mysql_error());
      //submitted data is ...

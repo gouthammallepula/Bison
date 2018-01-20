@@ -137,6 +137,44 @@
 
   $resultinf = mysqli_query($dbp,$data);
 
+  if (isset($_POST['subm'])) {
+      $numi = $_POST['idm'];
+      
+
+
+      $q = "select * FROM sbusers WHERE pid = '$numi';";
+
+      $ch = mysqli_query($dbp,$q);
+
+      $kim = mysqli_num_rows($ch);
+      
+      if ($kim > 0) {
+            $roam = mysqli_fetch_array($ch);
+           
+             $bname = $_SESSION['htno'];
+            
+            $namep = $roam['pname'];
+            $costp = $roam['cost'];
+            $usern = $roam['username'];
+            $mobo = $roam['mobno'];
+            $deck = $roam['info'];
+            $em = $roam['email'];
+            $htn = $roam['htno'];
+
+            
+            $ken = mysqli_connect("Localhost","root","","cart");
+            $qq = "insert into cart (pname,cost,username,mobno,email,des,bname,htno)values('$namep','$costp','$usern','$mobo','$em','$deck','$bname','$htn');";
+            $chin = mysqli_query($ken,$qq);
+            
+             if ($chin == 1) {
+                  echo "success";
+             }
+      }
+
+      
+
+}
+
   
      $count = mysqli_num_rows($resultinf);
             
@@ -146,6 +184,7 @@
         ';
 
           	while ($row = mysqli_fetch_array($resultinf)) {
+              $uni = $row['pid'];
         
           		// for image....
               echo '
@@ -157,13 +196,26 @@
               <h4 class="card-title">
                 <a href="#">'.$row['pname'].' - '.$row['cost'].'/₹</a>
               </h4>
-         <a href="#">'.$row['username'].'</a><br>'.$_SESSION['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
+         <a href="#">'.$row['username'].'</a><br>'.$row['htno'].'<br>+91'.$row['mobno'].'<br><small>'.$_SESSION['email'].'</small>';
 
             
              
       echo '
               <p class="card-text">'.$row['info'].'</p>
-               
+              <center>';
+              if ($row['htno']!=$_SESSION['htno']) {
+                
+             
+              echo '
+              <form method="post" action="">
+                 <input type="hidden" name="idm" value="'.$uni.'">
+                 <button href="#" name="subm" class="btn btn-primary">ADD TO CART</button>
+
+              </form>';
+               }
+
+              echo '
+               </center>
              
           
             </div>
@@ -219,7 +271,7 @@
 
    ?>
 <li class="page-item">
-          <a class="page-link" href="buy.php?page=<?php echo $a; ?>" aria-label="Next">
+          <a class="page-link" href="buy.php?page=<?php if($a==0){echo $a+1;}else{ echo $a;} ?>" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
           </a>

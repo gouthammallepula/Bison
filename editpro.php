@@ -1,5 +1,6 @@
 <?php
    include 'session.php';
+   $rex = 0;
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +76,7 @@
       </div>
     </nav>
 
-<div style="height: 50px;">
+     
 </div>
 <!--        php code starts here     -->
 <?php  
@@ -189,9 +190,7 @@ SET address = '$address', about = '$about' , interests = '$interests' , role1 = 
 WHERE uname = '$us';";
 
  $rex = mysqli_query($con,$sql);
- if ($rex==1) {
- 	  
- }
+ 
 
  
 
@@ -203,7 +202,20 @@ WHERE uname = '$us';";
 }
 ?>
 <!--        php code ends here     -->
-
+<div>
+  <?php 
+   if ($rex==1) {
+           echo  '<div class="container-contact100-form-btn">';?>
+					<button onclick="window.location='profile.php'" name="back"  class="contact100-form-btn">
+				<?php 	echo '	<span>
+							Saved Successful - Lets Go Back
+							
+						</span>
+					</button>
+				</div>';
+ }
+?>
+  </div>
 
 
 	<div class="container-contact100">
