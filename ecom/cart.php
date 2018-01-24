@@ -97,6 +97,7 @@
       <div id="cartcontent">
         <?php
 
+
           $uy = $_SESSION['htno'];
          
           $con = mysqli_connect("Localhost","root","","cart");
@@ -139,11 +140,25 @@
              echo ' <div class="row">';
               while ($roast = mysqli_fetch_array($rem))
                {
+                $numd = $roast['uniqueid'];
                 $unit = $roast['sno'];
                     echo '
                 <div id="marbot" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-                <a href="#"> <img src="data:image/jpeg/jpg/png;base64,'.base64_encode($roast['image']).'"height="40%" width="100%" /></a>';
+          <div class="card h-100">';
+
+           ?>
+          <?php 
+             $dbp = mysqli_connect("Localhost","root","","e_com");
+        $qer = "SELECT * FROM sbusers where pid LIKE '$numd'";
+        $dest = mysqli_query($dbp,$qer);
+        $desti = mysqli_fetch_array($dest);
+
+
+          ?>
+           <?php
+
+
+           echo '<a href="#"> <img src="data:image/jpeg/jpg/png;base64,'.base64_encode($desti['image']).'"height="40%" width="100%" /></a>';
             echo '
             <div class="card-body">
               <h4 class="card-title">
@@ -156,9 +171,9 @@
       echo '
               <p class="card-text">'.$roast['des'].'</p>
               <center>
-              <form method="post" action="">
+              <form method="post" action="" >
               <input name="iuy" type="hidden" value="'.$unit.'">
-                <button type="submit" name="su" class="btn btn-primary">Delete</button>
+                <button href="#form-anchor" type="submit" name="su" class="btn btn-primary">Delete</button>
                 </form>
               </center>
             </div>
@@ -237,7 +252,7 @@
 
       <!-- Call to Action Well -->
       <div class="card text-white bg-secondary my-4 text-center">
-        <div class="card-body">
+        <div class="card-body" id="form-anchor">
           <p class="text-white m-0">your content for Selling</p>
         </div>
       </div>

@@ -25,7 +25,7 @@
     <style type="text/css">
     	#bt
     	{
-    		margin-top: 20px;
+    		margin-left: 5px;
     	}
       #bran
            {
@@ -43,6 +43,11 @@
            {
               
            }
+           #bt,#btn
+      {
+        font-size: 17px;
+      }
+
        }
 
 
@@ -97,7 +102,7 @@
 
         <h1 class="display-3">welcome <small><?php  echo $_SESSION['uname'];   ?>!!</small></h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-        <button id="btn" class="btn btn-primary btn-lg" onclick="window.location = 'profile.php'">Let's goto profile</button><br>
+        <button id="btn" class="btn btn-primary btn-lg" onclick="window.location = 'profile.php'">Let's goto profile</button>
         <button id="bt" class="btn btn-primary btn-lg" onclick="window.location = 'ecom/cart.php?page=1&pagec=1&pagek=1'">OPEN CART</button>
 
       </header>

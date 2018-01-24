@@ -163,7 +163,7 @@
 
             
             $ken = mysqli_connect("Localhost","root","","cart");
-            $qq = "insert into cart (pname,cost,username,mobno,email,des,bname,htno)values('$namep','$costp','$usern','$mobo','$em','$deck','$bname','$htn');";
+            $qq = "insert into cart (pname,cost,username,mobno,email,des,bname,htno,uniqueid)values('$namep','$costp','$usern','$mobo','$em','$deck','$bname','$htn','$numi');";
             $chin = mysqli_query($ken,$qq);
             
              if ($chin == 1) {
