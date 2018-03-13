@@ -1,12 +1,13 @@
 <?php
    include 'session.php';
+   include 'dbconnect.php';
        // coonecting to database
- $con = mysqli_connect("Localhost","root","","profile");
+ 
  //username 
  $us = $_SESSION['uname'];
 //previous data
     $sq = "select * from profile where uname LIKE '$us';";
-    $result = mysqli_query($con,$sq);
+    $result = mysqli_query($conn,$sq);
     $count = mysqli_num_rows($result);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 

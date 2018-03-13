@@ -1,5 +1,6 @@
 <?php
    include '../session.php';
+   include '../dbconnect.php';
  
 ?>
 
@@ -101,18 +102,18 @@ if (isset($_POST['submit'])) {
 
 //  ini_set('post_max_size','20M');
 
-    $db = mysqli_connect("Localhost","root","","BisonUsers");
+   
   
-    $pname = mysqli_real_escape_string($db,$_POST['pname']);
+    $pname = mysqli_real_escape_string($conn,$_POST['pname']);
   
-    $info = mysqli_real_escape_string($db,$_POST['info']);
+    $info = mysqli_real_escape_string($conn,$_POST['info']);
 
-    $cost = mysqli_real_escape_string($db,$_POST['cost']);
+    $cost = mysqli_real_escape_string($conn,$_POST['cost']);
       //$username is included here
     $user =  $_SESSION['login_user'];
     
     $sql = "SELECT mobileno from busers where uname like '$user'";
-    $result = mysqli_query($db,$sql);
+    $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
   
      $count = mysqli_num_rows($result);
@@ -165,14 +166,14 @@ if (isset($_POST['submit'])) {
      // these are the files to be sent to database
      $sq = "insert into sbusers(image,pname,username,mobno,info,cost,email,htno)values('$img','$pname','$user','$mobno','$info','$cost','$em','$hno')";
      //connect to the database
-     $dbe = mysqli_connect("Localhost","root","","e_com") or die(mysql_error());
+ 
      //submitted data is ...
      //$pname - product name   $file - image of product 
      //$info - description of the product $user - name of the user
      //$mobno - mobile number of the user
 
      //below line will submit data into database....
-     mysqli_query($dbe,$sq);
+     mysqli_query($conn,$sq);
 
 
           echo ' <div class="alert alert-success">

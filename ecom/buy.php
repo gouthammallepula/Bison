@@ -1,5 +1,6 @@
 <?php
    include '../session.php';
+   include '../dbconnect.php';
 
 ?>
 
@@ -115,7 +116,7 @@
    
           
        //connecting to database
-  $dbp = mysqli_connect("Localhost","root","","e_com");
+
  //pagination algorithm
 
 
@@ -135,7 +136,7 @@
   //selecting data from tables
   $data = "select *from sbusers ORDER BY pid DESC limit $page1,8;";
 
-  $resultinf = mysqli_query($dbp,$data);
+  $resultinf = mysqli_query($conn,$data);
 
   if (isset($_POST['subm'])) {
       $numi = $_POST['idm'];
@@ -144,7 +145,7 @@
 
       $q = "select * FROM sbusers WHERE pid = '$numi';";
 
-      $ch = mysqli_query($dbp,$q);
+      $ch = mysqli_query($conn,$q);
 
       $kim = mysqli_num_rows($ch);
       
@@ -162,9 +163,9 @@
             $htn = $roam['htno'];
 
             
-            $ken = mysqli_connect("Localhost","root","","cart");
+            
             $qq = "insert into cart (pname,cost,username,mobno,email,des,bname,htno,uniqueid)values('$namep','$costp','$usern','$mobo','$em','$deck','$bname','$htn','$numi');";
-            $chin = mysqli_query($ken,$qq);
+            $chin = mysqli_query($conn,$qq);
             
              if ($chin == 1) {
                   echo "success";
@@ -240,7 +241,7 @@
    <?php 
   
     $dat = "select *from sbusers ORDER BY pid DESC;";
-    $res = mysqli_query($dbp,$dat);
+    $res = mysqli_query($conn,$dat);
     $c = mysqli_num_rows($res);
     $a = $c / 8;
     $a = ceil($a);

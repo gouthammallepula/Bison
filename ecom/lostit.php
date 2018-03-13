@@ -1,6 +1,6 @@
 <?php
    include '../session.php';
-
+   include '../dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -106,7 +106,7 @@
 
           
        //connecting to database
-  $dbp = mysqli_connect("Localhost","root","","lost_found_data");
+
 
   //pagination algorithm
   
@@ -126,7 +126,7 @@
   //selecting data from tables
   $data = "select *from lfdata ORDER BY sno DESC limit $page1,8;";
 
-  $resultinf = mysqli_query($dbp,$data);
+  $resultinf = mysqli_query($conn,$data);
 
   
      $count = mysqli_num_rows($resultinf);
@@ -177,7 +177,7 @@
     <?php 
   
     $dat = "select *from lfdata ORDER BY sno DESC;";
-    $res = mysqli_query($dbp,$dat);
+    $res = mysqli_query($conn,$dat);
     $c = mysqli_num_rows($res);
     $a = $c / 8;
     $a = ceil($a);

@@ -1,5 +1,6 @@
 <?php
    include '../session.php';
+   include '../dbconnect.php';
  
 ?>
 
@@ -96,10 +97,10 @@
 
 if (isset($_POST['submit'])) {
     
-      $dbf = mysqli_connect("Localhost","root","","lost_found_data");
       
-      $fname = mysqli_real_escape_string($dbf,$_POST['fname']);
-      $info = mysqli_real_escape_string($dbf,$_POST['info']);
+      
+      $fname = mysqli_real_escape_string($conn,$_POST['fname']);
+      $info = mysqli_real_escape_string($conn,$_POST['info']);
       $file = $_FILES['image'];
     
     $fileName = $file['name'];
@@ -113,9 +114,9 @@ if (isset($_POST['submit'])) {
       $em = $_SESSION['email'];
       $hno = $_SESSION['htno'];
 
-      $fm = mysqli_connect("Localhost","root","","BisonUsers");
+
       $fmq = "SELECT mobileno from busers where uname like '$user'";
-      $fmr = mysqli_query($fm,$fmq);
+      $fmr = mysqli_query($conn,$fmq);
       $fmi = mysqli_fetch_array($fmr,MYSQLI_ASSOC);
       $fmc = mysqli_num_rows($fmr);
 
@@ -138,7 +139,7 @@ if (isset($_POST['submit'])) {
              $img = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
              $sqli = "insert into lfdata(fname,place,personname,mobno,image,email,htno)values('$fname','$info','$user','$mobno','$img','$em','$hno');";
-             mysqli_query($dbf,$sqli);
+             mysqli_query($conn,$sqli);
              echo "<div class='alert alert-success'>
     <strong>Success!</strong> This alert box could indicate a successful or positive action.
   </div>";

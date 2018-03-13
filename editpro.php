@@ -1,5 +1,6 @@
 <?php
    include 'session.php';
+
    $rex = 0;
 ?>
 
@@ -82,7 +83,7 @@
 <?php  
 
     // coonecting to database
- $con = mysqli_connect("Localhost","root","","profile");
+ $con = mysqli_connect("Localhost","root","","BisonUsers");
  //username 
  $us = $_SESSION['login_user'];
 //previous data

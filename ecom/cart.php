@@ -1,5 +1,6 @@
 <?php
    include '../session.php';
+   include '../dbconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +101,7 @@
 
           $uy = $_SESSION['htno'];
          
-          $con = mysqli_connect("Localhost","root","","cart");
+          
 
           //pagination algorithm
 
@@ -118,14 +119,14 @@
 
           $qu = "select * from cart where bname LIKE '$uy' ORDER BY sno DESC limit $page3,4;";
 
-          $rem = mysqli_query($con,$qu);
+          $rem = mysqli_query($conn,$qu);
 
           if (isset($_POST['su'])) {
       $numt = $_POST['iuy'];
 
       $q = "DELETE FROM cart WHERE sno = '$numt'";
 
-      $ch = mysqli_query($con,$q);
+      $ch = mysqli_query($conn,$q);
 
       if ($ch==1) {
            include '../ope/delbuy.php';
@@ -148,9 +149,9 @@
 
            ?>
           <?php 
-             $dbp = mysqli_connect("Localhost","root","","e_com");
+           
         $qer = "SELECT * FROM sbusers where pid LIKE '$numd'";
-        $dest = mysqli_query($dbp,$qer);
+        $dest = mysqli_query($conn,$qer);
         $desti = mysqli_fetch_array($dest);
 
 
@@ -203,7 +204,7 @@
 <?php 
   
     $datm = "select * from cart where bname LIKE '$uy' ORDER BY sno DESC;";
-    $resk = mysqli_query($con,$datm);
+    $resk = mysqli_query($conn,$datm);
     $cp = mysqli_num_rows($resk);
     $ap = $cp / 4;
     $ap = ceil($ap);
@@ -261,7 +262,7 @@
          $us = $_SESSION['login_user'];
           
        //connecting to database
-  $dbp = mysqli_connect("Localhost","root","","e_com");
+  
 
   //pagination algorithm
 
@@ -280,14 +281,14 @@
   //selecting data from tables
   $data = "select *from sbusers where username LIKE '$us' ORDER BY pid DESC limit $page1,4;";
 
-  $resultinf = mysqli_query($dbp,$data);
+  $resultinf = mysqli_query($conn,$data);
   
 if (isset($_POST['subm'])) {
       $numi = $_POST['idm'];
 
       $q = "DELETE FROM sbusers WHERE pid = '$numi'";
 
-      $ch = mysqli_query($dbp,$q);
+      $ch = mysqli_query($conn,$q);
 
       if ($ch==1) {
            include '../ope/delbuy.php';
@@ -346,7 +347,7 @@ if (isset($_POST['subm'])) {
 <?php 
   
     $dat = "select *from sbusers where username LIKE '$us' ORDER BY pid DESC;";
-    $res = mysqli_query($dbp,$dat);
+    $res = mysqli_query($conn,$dat);
     $c = mysqli_num_rows($res);
     $a = $c / 4;
     $a = ceil($a);
@@ -401,7 +402,7 @@ if (isset($_POST['subm'])) {
 
           $us = $_SESSION['login_user'];
        //connecting to database
-  $dbp = mysqli_connect("Localhost","root","","lost_found_data");
+
 
   //pagination algorithm
   
@@ -420,13 +421,13 @@ if (isset($_POST['subm'])) {
   //selecting data from tables
   $data = "select *from lfdata where personname LIKE '$us' ORDER BY sno DESC limit $page2,4;";
 
-  $resultinf = mysqli_query($dbp,$data);
+  $resultinf = mysqli_query($conn,$data);
 
 if (isset($_POST['sub'])) {
-   $con = mysqli_connect("Localhost","root","","lost_found_data");
+
    $num = $_POST['id'];
    $query = "DELETE FROM lfdata WHERE sno = '$num'";
-   $res = mysqli_query($con,$query);
+   $res = mysqli_query($conn,$query);
    if ($res==1) {
    
          include '../ope/delbuy.php';
@@ -493,9 +494,9 @@ if (isset($_POST['sub'])) {
     <!-- /.container -->
 
 <?php 
-    $db = mysqli_connect("Localhost","root","","lost_found_data");
+    
     $dati = "select *from lfdata where personname LIKE '$us' ORDER BY sno DESC;";
-    $rest = mysqli_query($db,$dati);
+    $rest = mysqli_query($conn,$dati);
     $k = mysqli_num_rows($rest);             //c=k , a=y b=n
     $y = $k / 4;
     $y = ceil($y);
